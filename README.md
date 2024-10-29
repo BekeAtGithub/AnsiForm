@@ -1,3 +1,4 @@
+```
 ├── terraform/
 │   ├── main.tf               # Terraform configuration for EKS cluster
 │   ├── variables.tf          # Input variables for Terraform
@@ -19,3 +20,14 @@
 │               └── uvicorn.service.j2
 │
 └── README.md                 # Project documentation
+```
+
+# Validate Terraform syntax
+terraform validate
+terraform plan
+
+# Validate Packer configuration
+packer validate uvicorn-image.json
+
+# Validate Ansible Playbook
+ansible-lint
