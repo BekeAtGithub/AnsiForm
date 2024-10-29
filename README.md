@@ -1,3 +1,4 @@
+```
 ├── terraform/
 │   ├── main.tf               # Terraform configuration for EKS cluster
 │   ├── variables.tf          # Input variables for Terraform
@@ -19,3 +20,4 @@
 │               └── uvicorn.service.j2
 │
 └── README.md                 # Project documentation
+```
