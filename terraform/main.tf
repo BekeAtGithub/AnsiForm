@@ -1,8 +1,3 @@
-# Provider Configuration
-provider "aws" {
-  region = var.region
-}
-
 # VPC and Subnet Data (adjust according to your network setup)
 data "aws_vpc" "main_vpc" {
   id = var.vpc_id
@@ -42,6 +37,7 @@ module "rds" {
   private_subnets      = data.aws_subnet_ids.private_subnets.ids
 }
 
+
 # Load Balancer Module
 module "load_balancer" {
   source            = "./modules/load_balancer"
@@ -51,15 +47,3 @@ module "load_balancer" {
   target_port       = 80  # Port for the Uvicorn app instances
 }
 
-# Outputs
-output "eks_cluster_endpoint" {
-  value = module.eks.eks_cluster_endpoint
-}
-
-output "rds_endpoint" {
-  value = module.rds.rds_instance_endpoint
-}
-
-output "load_balancer_dns" {
-  value = module.load_balancer.load_balancer_dns_name
-}

@@ -1,33 +1,55 @@
-variable "cluster_name" {
-  description = "Name of the EKS cluster"
+variable "db_name" {
+  description = "Name of the database to create in the RDS instance"
   type        = string
+}
+
+variable "db_username" {
+  description = "Master username for the RDS instance"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Master password for the RDS instance"
+  type        = string
+  sensitive   = true
+}
+
+variable "allocated_storage" {
+  description = "Allocated storage for the RDS instance in GB"
+  type        = number
+  default     = 20
+}
+
+variable "storage_type" {
+  description = "Storage type for the RDS instance (e.g., gp2)"
+  type        = string
+  default     = "gp2"
+}
+
+variable "engine" {
+  description = "Database engine (e.g., postgres, mysql)"
+  type        = string
+  default     = "postgres"
+}
+
+variable "engine_version" {
+  description = "Version of the database engine"
+  type        = string
+  default     = "12.7"
+}
+
+variable "instance_class" {
+  description = "Instance class for the RDS instance"
+  type        = string
+  default     = "db.t3.medium"
 }
 
 variable "private_subnets" {
-  description = "List of private subnet IDs for the EKS cluster"
+  description = "List of private subnets for RDS deployment"
   type        = list(string)
 }
 
-variable "node_desired_size" {
-  description = "Desired number of nodes in the node group"
-  type        = number
-  default     = 2
-}
-
-variable "node_max_size" {
-  description = "Maximum number of nodes in the node group"
-  type        = number
-  default     = 5
-}
-
-variable "node_min_size" {
-  description = "Minimum number of nodes in the node group"
-  type        = number
-  default     = 1
-}
-
-variable "node_instance_type" {
-  description = "EC2 instance type for EKS nodes"
+variable "db_security_group" {
+  description = "Security group ID for the RDS instance"
   type        = string
-  default     = "t3.medium"
 }
