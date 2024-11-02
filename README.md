@@ -25,7 +25,7 @@
 
 ```
 
-# Validate Terraform syntax
+# Validate Terraform syntax 
 terraform validate
 terraform plan
 
