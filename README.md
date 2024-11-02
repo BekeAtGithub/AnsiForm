@@ -1,4 +1,4 @@
-```
+
 ```
 ├── terraform/
 │   ├── main.tf               # Terraform configuration for EKS cluster
@@ -23,7 +23,6 @@
 └── README.md                 # Project documentation
 ```
 
-```
 
 # Validate Terraform syntax 
 terraform validate
