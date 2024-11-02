@@ -12,9 +12,9 @@ resource "aws_eks_cluster" "eks_cluster" {
 
 # EKS Node Group
 resource "aws_eks_node_group" "eks_nodes" {
-  cluster_name    = aws_eks_cluster.eks_cluster.name
-  node_role_arn   = aws_iam_role.eks_node_role.arn
-  subnet_ids      = var.private_subnets
+  cluster_name  = aws_eks_cluster.eks_cluster.name
+  node_role_arn = aws_iam_role.eks_node_role.arn
+  subnet_ids    = var.private_subnets
   scaling_config {
     desired_size = var.node_desired_size
     max_size     = var.node_max_size
@@ -28,9 +28,9 @@ resource "aws_iam_role" "eks_role" {
     Version = "2012-10-17",
     Statement = [
       {
-        Effect = "Allow",
+        Effect    = "Allow",
         Principal = { Service = "eks.amazonaws.com" },
-        Action = "sts:AssumeRole"
+        Action    = "sts:AssumeRole"
       }
     ]
   })
@@ -40,14 +40,14 @@ resource "aws_iam_role" "eks_role" {
 # IAM Role for EKS Node Group
 resource "aws_iam_role" "eks_node_role" {
   name = "${var.cluster_name}-eks-node-role"
-  
+
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
-        Effect = "Allow",
+        Effect    = "Allow",
         Principal = { Service = "ec2.amazonaws.com" },
-        Action = "sts:AssumeRole"
+        Action    = "sts:AssumeRole"
       }
     ]
   })
