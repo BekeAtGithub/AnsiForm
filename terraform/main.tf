@@ -3,11 +3,11 @@ data "aws_vpc" "main_vpc" {
   id = var.vpc_id
 }
 
-data "aws_subnet_ids" "public_subnets" {
+data "aws_subnet" "public_subnets" {
   vpc_id = data.aws_vpc.main_vpc.id
 }
 
-data "aws_subnet_ids" "private_subnets" {
+data "aws_subnet" "private_subnets" {
   vpc_id = data.aws_vpc.main_vpc.id
 }
 
@@ -15,7 +15,7 @@ data "aws_subnet_ids" "private_subnets" {
 module "eks" {
   source              = "./modules/eks"
   cluster_name        = var.cluster_name
-  private_subnets     = data.aws_subnet_ids.private_subnets.ids
+  private_subnets     = data.aws_subnet.private_subnets.id
   node_desired_size   = var.node_desired_size
   node_max_size       = var.node_max_size
   node_min_size       = var.node_min_size
@@ -34,7 +34,7 @@ module "rds" {
   engine_version       = var.engine_version
   instance_class       = var.instance_class
   db_security_group    = var.db_security_group
-  private_subnets      = data.aws_subnet_ids.private_subnets.ids
+  private_subnets      = data.aws_subnet.private_subnets.id
 }
 
 
@@ -43,7 +43,7 @@ module "load_balancer" {
   source            = "./modules/load_balancer"
   certificate_arn   = var.certificate_arn
   vpc_id            = data.aws_vpc.main_vpc.id
-  public_subnets    = data.aws_subnet_ids.public_subnets.ids
+  public_subnets    = data.aws_subnet.public_subnets.id
   target_port       = 80  # Port for the Uvicorn app instances
 }
 
