@@ -55,3 +55,34 @@ resource "aws_lb_target_group" "app_tg" {
     unhealthy_threshold = 2
   }
 }
+
+resource "aws_security_group" "lb_sg" {
+  name        = "load-balancer-sg"
+  description = "Security group for the application load balancer"
+  vpc_id      = var.vpc_id  # Ensure you have a VPC ID variable defined
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTP traffic from anywhere
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow HTTPS traffic from anywhere
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]  # Allow all outbound traffic
+  }
+
+  tags = {
+    Name = "load-balancer-sg"
+  }
+}

@@ -15,5 +15,5 @@ output "rds_instance_id" {
 
 output "rds_instance_name" {
   description = "The database name of the RDS instance"
-  value       = aws_db_instance.rds_instance.name
+  value = aws_db_instance.rds_instance.identifier
 }
