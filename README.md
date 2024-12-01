@@ -10,7 +10,7 @@
 │   ├── uvicorn-image.json    # Packer template for building a Uvicorn web app image
 │   └── scripts/
 │       └── install_app.sh    # Script to install Uvicorn app dependencies
-│
+│ 
 ├── ansible/
 │   ├── playbook.yaml         # Ansible playbook to deploy Uvicorn app on EC2 instances
 │   └── roles/
