@@ -5,7 +5,7 @@
 │   ├── variables.tf          # Input variables for Terraform 
 │   ├── outputs.tf            # Output variables from Terraform  
 │   └── provider.tf           # Provider configuration (AWS, etc.)
-│
+│ 
 ├── packer/
 │   ├── uvicorn-image.json    # Packer template for building a Uvicorn web app image
 │   └── scripts/
