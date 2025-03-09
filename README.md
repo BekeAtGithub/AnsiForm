@@ -1,7 +1,7 @@
 
 ```
 ├── terraform/ 
-│   ├── main.tf               # Terraform configuration for EKS cluster  
+│   ├── main.tf               # Terraform configuration for EKS cluster
 │   ├── variables.tf          # Input variables for Terraform   
 │   ├── outputs.tf            # Output variables from Terraform  
 │   └── provider.tf           # Provider configuration (AWS, etc.)
